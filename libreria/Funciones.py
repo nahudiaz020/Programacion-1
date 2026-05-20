@@ -42,6 +42,43 @@ def get_Char(caracter: str) -> bool:
 
     return retorno
 
+def validar_nombre(nombre: str) -> bool:
+    """
+    Determina si una cadena corresponde a un nombre válido.
+
+    La función verifica que la cadena contenga únicamente:
+    - letras mayúsculas o minúsculas
+    - espacios en blanco
+
+    Args:
+        nombre (str): Nombre y apellido a validar.
+
+    Returns:
+        bool: True si el nombre es válido.
+              False en caso contrario.
+    """
+
+    retorno = True
+
+    for caracter in nombre:
+
+        # VALIDAR LETRAS
+        if get_Char(caracter):
+
+            retorno = True
+
+        # VALIDAR ESPACIOS
+        elif caracter == " ":
+
+            retorno = True
+
+        else:
+
+            retorno = False
+            break
+
+    return retorno
+
 '''
 Funcion que recorre una cadena de caracteres, por cada caracater llama a la 
 funcion get_Char.
