@@ -60,6 +60,18 @@ def ingresar_datos(legajos: list, nombres: list, generos: list, notas_pp: list, 
                 print("Error. Ingrese solo numeros.")
         notas_sp.append(segundo_parcial)
     
+def mostrar_todos(legajos: list, nombres: list, generos: list, notas_pp: list, notas_sp: list) -> None:
+    print("\nResumen de Estudiantes:")
+    for i in range(len(legajos)):  
+        print(f"\n--- ESTUDIANTE {i+1} ---")
+       
+        print(f"Legajo: {legajos[i]}")
+        print(f"Nombre: {nombres[i]}")
+        print(f"Genero: {generos[i]}")
+        print(f"Notas primer parcial: {notas_pp[i]}")
+        print(f"Notas segundo parcial: {notas_sp[i]}")
+
+
 def encontrar_extremos(calificaciones): 
     """
     Función para encontrar la calificación máxima y mínima.
@@ -104,7 +116,7 @@ while opcion != 7:
             ingresar_datos(legajos, nombres, generos, notas_pp, notas_sp)
         
         case "2":
-            print()
+            mostrar_todos(legajos, nombres, generos, notas_pp, notas_sp)
 
         case "3":
             print()
