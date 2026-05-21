@@ -1,14 +1,21 @@
 from libreria.Funciones import *
-legajos = []
-nombres = []
-generos = []
-notas_pp = []
-notas_sp = []
+# legajos = []
+# nombres = []
+# generos = []
+# notas_pp = []
+# notas_sp = []
+legajos = [1001, 1002, 1003, 1004, 1005]
+nombres = ["Juan Perez", "Ana Gomez", "Luis Martinez", "Sofia Lopez", "Carlos Diaz"]
+generos = ["M", "F", "M", "F", "M"]
+notas_pp = [7, 9, 6, 10, 8]
+notas_sp = [8, 10, 7, 9, 6]
+promedios = [7.5, 9.5, 6.5, 9.5, 7.0]
+promedios = []
 
 def ingresar_datos(legajos: list, nombres: list, generos: list, notas_pp: list, notas_sp: list) -> None:
     
 
-    cantidad = 30
+    cantidad = 5
     for i in range(cantidad):
         print(f"\n---- ESTUDIANTE {i+1} ----")
         
@@ -59,7 +66,43 @@ def ingresar_datos(legajos: list, nombres: list, generos: list, notas_pp: list, 
             else:
                 print("Error. Ingrese solo numeros.")
         notas_sp.append(segundo_parcial)
-    
+
+def buscar_estudiante(
+        legajos: list,
+        legajo_buscado: int
+    ) -> int:
+    """
+    Busca un estudiante por legajo.
+
+    Args:
+        legajos (list): Lista de legajos.
+        legajo_buscado (int): Legajo a buscar.
+
+    Returns:
+        int: Retorna el índice del estudiante encontrado.
+             Si no existe, retorna -1.
+    """
+
+    retorno = -1
+
+    for i in range(len(legajos)):
+
+        if legajos[i] == legajo_buscado:
+
+            retorno = i
+            break
+
+    return retorno     
+   
+def mostrar_estudiante(legajos: list, nombres: list, generos: list, notas_pp: list, notas_sp: list, indice: int) -> None:
+    print(f"\n--- ESTUDIANTE {indice + 1} ---")
+       
+    print(f"Legajo: {legajos[indice]}")
+    print(f"Nombre: {nombres[indice]}")
+    print(f"Genero: {generos[indice]}")
+    print(f"Notas primer parcial: {notas_pp[indice]}")
+    print(f"Notas segundo parcial: {notas_sp[indice]}")    
+
 def mostrar_todos(legajos: list, nombres: list, generos: list, notas_pp: list, notas_sp: list) -> None:
     print("\nResumen de Estudiantes:")
     for i in range(len(legajos)):  
@@ -72,22 +115,58 @@ def mostrar_todos(legajos: list, nombres: list, generos: list, notas_pp: list, n
         print(f"Notas segundo parcial: {notas_sp[i]}")
 
 
-def encontrar_extremos(calificaciones): 
-    """
-    Función para encontrar la calificación máxima y mínima.
-    Arg: Calificaciones: Lista para almacenar las calificaciones.
-    Return: Tupla con el indice de la calificación máxima y mínima ingresada por el usuario.
-    """
-    for i in range(len(calificaciones)):
+def calcular_promedio(notas_pp, notas_sp, promedios): 
+    for i in range(len(notas_pp)):
+        promedio = (notas_pp[i] + notas_sp[i]) /2
+        promedios.append(promedio)
+        print(f"Estudiante {i+1} -> Promedio: {promedio:.2f}")
+    
+def ordenar_estudiantes(legajos:list, nombres: list, generos:list, notas_pp: list, notas_sp: list, promedios: list, criterio:str = "ASC") -> None:
+    for i in range(len(promedios)-1):
+        for j in range(i + 1, len(promedios) ):  
+            if (criterio == "ASC" and promedios[i] > promedios[j]) or (criterio == "DESC" and promedios[i] < promedios[j]):
+                    #PROMEDIOS
+                    aux = promedios[i]
+                    promedios[i] = promedios[j]
+                    promedios[j] = aux
+
+                    #LEGAJOS
+                    aux = legajos[i]
+                    legajos[i] = legajos[j]
+                    legajos[j] = aux
+
+                    #NOMBRES
+                    aux = nombres[i]
+                    nombres[i] = nombres[j]
+                    nombres[j] = aux
+
+                    #GENEROS
+                    aux = generos[i]
+                    generos[i] = generos[j]
+                    generos[j] = aux
+
+                    #PRIMER PARCIAL
+                    aux = notas_pp[i]
+                    notas_pp[i] = notas_pp[j]
+                    notas_pp[j] = aux
+
+                    #SEGUNDO PARCIAL
+                    aux = notas_sp[i]
+                    notas_sp[i] = notas_sp[j]
+                    notas_sp[j] = aux
+
+def encontrar_extremos(promedios): 
+    indice_maximo = 0
+    indice_minimo = 0
+    for i in range(len(promedios)):
         if i == 0:
             indice_maximo = i
-        elif calificaciones[i] > calificaciones[indice_maximo]:
-            indice_maximo =  1
-
-        if i == 0:
-            indice_minimo = i
-        elif calificaciones[i] < calificaciones[indice_minimo]:
-            indice_minimo =   i
+            indice_maximo = i
+        else:
+            if i == 0:
+                indice_minimo = i
+            elif promedios[i] < promedios[indice_minimo]:
+                indice_minimo = i
 
     return indice_maximo, indice_minimo
 
@@ -105,7 +184,7 @@ def mostrar_menu():
 
 opcion = 0
 
-while opcion != 7:
+while opcion != "7":
 
     mostrar_menu()
 
@@ -117,21 +196,58 @@ while opcion != 7:
         
         case "2":
             mostrar_todos(legajos, nombres, generos, notas_pp, notas_sp)
+            mostrar_estudiante(legajos, nombres, generos, notas_pp, notas_sp, 4)
 
         case "3":
-            print()
+            promedio = calcular_promedio(notas_pp, notas_sp, promedios)
 
         case "4":
-            print()
+            criterio = input("Ingrese ASC o DESC: ")
+            ordenar_estudiantes(legajos, nombres, generos, notas_pp, notas_sp, promedios, criterio)
+            mostrar_todos(legajos, nombres, generos, notas_pp, notas_sp)
 
         case "5":
-            print()
+            if len(promedios) > 0:
+                resultado = encontrar_extremos(promedios)
+                indice_maximo = resultado[0] 
+                indice_minimo = resultado[1]
+                print("\n--- MAYOR PROMEDIO ----")
+                mostrar_estudiante(legajos, nombres, generos, notas_pp, notas_sp, indice_maximo)
+                print(f"Promedio: {promedios[indice_maximo]:.2f}")
+
+                print("\n--- MENOR PROMEDIO ----")
+                mostrar_estudiante(legajos, nombres, generos, notas_pp, notas_sp, indice_minimo)
+                print(f"Promedio: {promedios[indice_minimo]:.2f}")
+
+            else:
+                print("Primero debe calcular los promedios.")
 
         case "6":
-            print()
+            legajo_buscado = int(input("Ingrese legajo a buscar: "))
+            indice = buscar_estudiante(legajos, legajo_buscado)  
+            if indice != -1:  
+                mostrar_estudiante(legajos, nombres, generos, notas_pp, notas_sp, indice)  
+            
+            else:
+                print("No se encontro el estudiante.")   
 
         case "7":
             print("Saliendo del menu...")
         
         case _:
-            print("Opcion invalida")
+            print("Opcion invalida")         
+
+   
+
+        
+            
+            
+            
+            
+            
+            
+       
+
+    
+
+        
