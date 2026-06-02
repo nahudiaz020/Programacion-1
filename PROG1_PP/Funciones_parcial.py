@@ -53,10 +53,7 @@ def ingresar_datos(legajos: list, nombres: list, generos: list, notas_pp: list, 
                 print("Error. Ingrese solo numeros.")
         notas_sp.append(segundo_parcial)
 
-def buscar_estudiante(
-        legajos: list,
-        legajo_buscado: int
-    ) -> int:
+def buscar_estudiante(legajos: list, legajo_buscado: int) -> int:
     """
     Busca un estudiante por legajo.
 
