@@ -1,4 +1,4 @@
-from libreria.Funciones import *
+from Biblioteca.Funciones import *
 
 numero_uno = input("Ingrese el primer numero a sumar: ")
 numero_dos = input("Ingrese el segundo numero a sumar: ")

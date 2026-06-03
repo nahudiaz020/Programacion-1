@@ -1,5 +1,5 @@
 # DESAFIO CUADRADO MAGICO
-from libreria.Funciones import *
+from Biblioteca.Funciones import *
 
 def inicializar_matriz(cantidad_filas : int, cantidad_columnas:int, valor_inicial:any) -> list:
     matriz = []

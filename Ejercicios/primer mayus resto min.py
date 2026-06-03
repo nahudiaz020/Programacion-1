@@ -9,7 +9,7 @@ La funcion debera retornar la misma cadena en formato capitalizado. Por ejemplo:
     Tantos espacios en blanco como ocurran en la cadena de caracteres
 '''
 
-from libreria.Funciones import *
+from Biblioteca.Funciones import *
 
 def capitalizar_cadena(cadena: str) -> str:
     """ 

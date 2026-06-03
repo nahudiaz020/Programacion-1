@@ -1,4 +1,4 @@
-from libreria.Funciones import *
+from Biblioteca.Funciones import *
 
 def ingresar_datos(legajos: list, nombres: list, generos: list, notas_pp: list, notas_sp: list) -> None:
     cantidad = 30
