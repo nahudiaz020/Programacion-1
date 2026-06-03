@@ -3,7 +3,7 @@ Hacer una funcion que reciba una cadena de caracteres y convierta la misma a may
 los caracteres de dicha cadena que ya estan en mayusculas deberan quedar en mayusculas.
 La funcion debera retornar la misma cadena en mayusculas.
 '''
-from libreria.Funciones import * 
+from libreria.mis_funciones import * 
 
 def str_upr(cadena):
     cadena_aux = ""

@@ -1,4 +1,4 @@
-from Biblioteca.Funciones import *
+from libreria.mis_funciones import *
 
 def es_palindromo(cadena: str) -> bool:
     """

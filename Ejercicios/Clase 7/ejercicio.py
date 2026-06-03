@@ -1,6 +1,6 @@
 # Hacer una funcion en el cual el primer caracter de una cadena sea mayuscula 
 
-from Biblioteca.Funciones import *
+from libreria.mis_funciones import *
 
 def str_upr_char2(cadena) -> str: #'mundial' cadena1[0] = 'm', cadena1[1] = 'a'...
     """

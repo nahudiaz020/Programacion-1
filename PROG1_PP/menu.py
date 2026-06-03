@@ -1,4 +1,4 @@
-from PROG1_PP.Funciones_parcial import *
+from Funciones_parcial import *
 # legajos = []
 # nombres = []
 # generos = []
