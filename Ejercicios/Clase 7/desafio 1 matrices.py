@@ -1,5 +1,5 @@
 # DESAFIO CUADRADO MAGICO
-from Biblioteca.Funciones import *
+from libreria.Funciones import *
 
 def inicializar_matriz(cantidad_filas : int, cantidad_columnas:int, valor_inicial:any) -> list:
     matriz = []
@@ -24,11 +24,8 @@ def cargar_matriz_secuencialmente(matriz:list):
 filas = input("Ingrese cantidad de filas deseada: ")
 columnas = input("Ingrese cantidad de columnas deseada: ")
 
-if validar_num(filas) and validar_num(columnas):    
-    mi_matriz = inicializar_matriz(filas, columnas, 0)
-
-else:
-    print("Ingrese numeros enteros")
+  
+mi_matriz = inicializar_matriz(filas, columnas, 0)
 
 cargar_matriz_secuencialmente(mi_matriz)
 print(mi_matriz)
