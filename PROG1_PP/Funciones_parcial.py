@@ -1,5 +1,16 @@
 from libreria.mis_funciones import *
 
+def mostrar_menu():
+
+    print("\n----- MENU -----")
+    print("1. Cargar datos")
+    print("2. Mostrar todos los datos ")
+    print("3. Calcular prom. de cada estudiante")
+    print("4. Ordenar datos")
+    print("5. Mostrar mayor promedio")
+    print("6. Mostrar datos de un estudiante")
+    print("7. Salir del menu")
+
 def ingresar_datos(legajos: list, nombres: list, generos: list, notas_pp: list, notas_sp: list) -> None:
     cantidad = 30
     for i in range(cantidad):

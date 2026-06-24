@@ -12,18 +12,6 @@ notas_sp = [8, 10, 7, 9, 6]
 promedios = [7.5, 9.5, 6.5, 9.5, 7.0]
 promedios = []
 
-def mostrar_menu():
-
-    print("\n----- MENU -----")
-    print("1. Cargar datos")
-    print("2. Mostrar todos los datos ")
-    print("3. Calcular prom. de cada estudiante")
-    print("4. Ordenar datos")
-    print("5. Mostrar mayor promedio")
-    print("6. Mostrar datos de un estudiante")
-    print("7. Salir del menu")
-
-
 opcion = 0
 
 while opcion != "7":
