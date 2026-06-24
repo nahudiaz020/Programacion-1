@@ -67,5 +67,5 @@ print(diccionario3['Legajo'],diccionario3['Nombre'],diccionario3['Apellido'],dic
 print(diccionario4['Legajo'],diccionario4['Nombre'],diccionario4['Apellido'],diccionario4['Genero'],diccionario4['P1'],diccionario4['P2'],diccionario4['Promedio'])
 '''
 calcular_promedio(alumnos)
-imprimir_titulos("LEGAJO NOMBRE APELLIDO GENERO P1 P2 PROM")
+imprimir_titulos("LEGAJO  NOMBRE   APELLIDO   GENERO  P1    P2   PROM")
 mostrar_Alumnos(alumnos)

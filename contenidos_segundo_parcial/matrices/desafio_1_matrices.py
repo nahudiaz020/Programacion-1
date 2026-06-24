@@ -21,8 +21,8 @@ def cargar_matriz_secuencialmente(matriz:list):
 
 
 
-filas = input("Ingrese cantidad de filas deseada: ")
-columnas = input("Ingrese cantidad de columnas deseada: ")
+filas = int(input("Ingrese cantidad de filas deseada: "))
+columnas = int(input("Ingrese cantidad de columnas deseada: "))
 
   
 mi_matriz = inicializar_matriz(filas, columnas, 0)
