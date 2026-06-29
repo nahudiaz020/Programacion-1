@@ -68,4 +68,5 @@ print(diccionario4['Legajo'],diccionario4['Nombre'],diccionario4['Apellido'],dic
 '''
 calcular_promedio(alumnos)
 imprimir_titulos("LEGAJO  NOMBRE   APELLIDO   GENERO  P1    P2   PROM")
+alumnos.sort(key=lambda alumno: alumno["Legajo"])
 mostrar_Alumnos(alumnos)

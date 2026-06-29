@@ -1,9 +1,11 @@
 from Funciones_parcial import *
-# legajos = []
-# nombres = []
-# generos = []
-# notas_pp = []
-# notas_sp = []
+'''
+legajos = []
+nombres = []
+generos = []
+notas_pp = []
+notas_sp = []
+'''
 legajos = [1001, 1002, 1003, 1004, 1005]
 nombres = ["Juan Perez", "Ana Gomez", "Luis Martinez", "Sofia Lopez", "Carlos Diaz"]
 generos = ["M", "F", "M", "F", "M"]
