@@ -26,7 +26,11 @@ def validar_genero(genero: str) -> bool:
     Returns:
         bool: Retorna True si es 'F', 'M' o 'X', de lo contrario False.
     """
-    return genero in ["F", "M", "X"]
+    if genero == "F" or genero == "M" or genero == "X":
+        retorno = True
+    else:
+        retorno = False
+    return retorno
 
 
 def validar_nota(nota: int) -> bool:
