@@ -1,6 +1,6 @@
 import json
 
-def pausar_y_limpiar_pantalla() -> None:
+def limpiar_pantalla() -> None:
     """
     Frena el programa para que el usuario lea el cartel y 
     luego limpie la pantalla empujando el texto.
@@ -169,7 +169,7 @@ def imprimir_titulos(titulos:str ) -> None :
 def mostar_alumno(alumno) :
     """
     Muestra en una única línea tabulada las claves principales de un estudiante.
-    Esta función es el bloque base para listados y búsquedas (Nota 5).
+    Esta función es el bloque base para listados y búsquedas.
     
     Args:
         alumno (dict): Diccionario que contiene la información del estudiante.
@@ -183,7 +183,7 @@ def mostar_alumno(alumno) :
 
 def mostrar_Alumnos (lista_alumnos) :
     """
-    Recorre un conjunto de estudiantes imprimiendo cada elemento (Nota 5).
+    Recorre un conjunto de estudiantes imprimiendo cada elemento.
     
     Args:
         lista_alumnos (list): Lista que contiene los diccionarios a iterar.
@@ -215,6 +215,22 @@ def buscar_estudiante(lista_alumnos: list, legajo_buscado: int) -> int:
     return retorno     
 
 
+def mostrar_estudiante_buscado(lista_alumnos: list, indice: int) -> None:
+    """
+    Imprime en pantalla la ficha de un estudiante localizado mediante un índice de éxito.
+    
+    Args:
+        lista_alumnos (list): Lista de diccionarios del proyecto.
+        indice (int): La posición exacta dentro de la lista que se desea visualizar.
+    """
+    print(f"\n--- ESTUDIANTE ENCONTRADO (Posición{indice + 1}) ---")
+       
+    alumno = lista_alumnos[indice]
+
+    imprimir_titulos("RESULTADO DE LA BÚSQUEDA")
+    mostar_alumno(alumno) 
+
+
 def gestionar_busqueda_alumno(lista_alumnos: list) -> None:
     """
     Maneja de forma interna los reintentos de búsqueda por legajo
@@ -243,20 +259,7 @@ def gestionar_busqueda_alumno(lista_alumnos: list) -> None:
             print("Error: El legajo debe ser un número entero.")
 
 
-def mostrar_estudiante_buscado(lista_alumnos: list, indice: int) -> None:
-    """
-    Imprime en pantalla la ficha de un estudiante localizado mediante un índice de éxito.
-    
-    Args:
-        lista_alumnos (list): Lista de diccionarios del proyecto.
-        indice (int): La posición exacta dentro de la lista que se desea visualizar.
-    """
-    print(f"\n--- ESTUDIANTE ENCONTRADO (Posición{indice + 1}) ---")
-       
-    alumno = lista_alumnos[indice]
-
-    imprimir_titulos("RESULTADO DE LA BÚSQUEDA")
-    mostar_alumno(alumno)    
+   
 
 
 def calcular_promedio(lista_alumnos):
@@ -346,7 +349,7 @@ def mostrar_menu():
 
     print("\n----- MENU -----")
     print("1. Leer archivo JSON ")
-    print("2. Cargar datos manualmente")
+    print("2. Cargar alumno nuevo manualmente")
     print("3. Mostrar todos los alumnos")
     print("4. Calcular promedios")
     print("5. Ordenar por promedio DESC")
