@@ -34,8 +34,7 @@ def asegurar_precarga_json(lista_alumnos: list, ruta_archivo: str) -> list:
     para asegurar la persistencia y la retorna. Si ya tenía datos, no hace nada. 
     """
     if len(lista_alumnos) == 0:
-        print("Cargando base de datos inicial desde el JSON...")
-        # Llamamos a tu función nativa de lectura
+        print("Cargando datos inicialels desde el JSON")
         lista_alumnos = leer_json(ruta_archivo)
         
     return lista_alumnos
