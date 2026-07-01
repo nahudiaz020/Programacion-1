@@ -293,7 +293,7 @@ def mostrar_mayor_promedio(lista_alumnos: list) -> None:
             max_promedio = alumno["prom"]
 
        
-    print(f"\n Mayor promedio encontrado: {max_promedio: 2.f}")
+    print(f"\n Mayor promedio encontrado: {max_promedio}")
     imprimir_titulos("ESTUDIANTE/S CON MAYOR PROMEDIO")
 
     for alumno in lista_alumnos:
