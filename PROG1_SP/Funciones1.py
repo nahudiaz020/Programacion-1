@@ -1,5 +1,16 @@
 import json
 
+def pausar_y_limpiar_pantalla() -> None:
+    """
+    Frena el programa para que el usuario lea el cartel y 
+    luego limpie la pantalla empujando el texto.
+    """
+    input("\nPresione ENTER para continuar...")
+
+    for i in range(30):
+        print("")
+
+
 def leer_json(data_sp):
     """
     Abre un archivo JSON, lee su contenido y extrae la lista de alumnos.
@@ -59,67 +70,85 @@ def validar_nombre(nombre: str) -> bool:
     return nombre.replace(" ", "").isalpha()
 
 
-def cargar_alumnos(cantidad: int) -> list:
+def cargar_un_alumno(lista_actual: int) -> None:
     """
-    Realiza la carga secuencial de alumnos por consola validando cada campo.
-    
-    Args:
-        cantidad (int): El número de estudiantes que se desean registrar de forma manual.
-        
-    Returns:
-        list: Una lista que contiene los diccionarios de los nuevos alumnos cargados.
+    Realiza la carga de un unico alumno y lo agrega
+    al final de la lista unificada.
     """
-    alumnos = []
-
-    for i in range(cantidad):
-
-        print(f"\n--- ALUMNO {i + 1} ---")
-
-        legajo = (input("Legajo: "))
-        while not legajo.isdigit():
-                print("Error: Legajo invalido (numerico entero)")
-                legajo = input("Legajo: ")
+    print("\n---- CARGA DE ESTUDIANTE ----")
+    legajo = (input("Legajo: "))
+    while not legajo.isdigit():
+        print("Error: Legajo invalido (numerico entero)")
+        legajo = input("Legajo: ")
                 
+    nombre = input("Apellido y Nombre: ")
+
+    while not validar_nombre(nombre):
+        print("Error. Ingrese solo letras.")
         nombre = input("Apellido y Nombre: ")
 
-        while not validar_nombre(nombre):
-            print("Error. Ingrese solo letras.")
-            nombre = input("Apellido y Nombre: ")
+    genero = input("Genero (F/M/X): ").upper()
 
+    while not validar_genero(genero):
+        print("Error. Ingrese F, M o X.")
         genero = input("Genero (F/M/X): ").upper()
 
-        while not validar_genero(genero):
-            print("Error. Ingrese F, M o X.")
-            genero = input("Genero (F/M/X): ").upper()
+    nota_pp = input("Primer parcial: ")
 
+    while not nota_pp.isdigit() or not validar_nota(int(nota_pp)):
+        print("Error: nota invalida (1-10 y numerico entero)")
         nota_pp = input("Primer parcial: ")
 
-        while not nota_pp.isdigit() or not validar_nota(int(nota_pp)):
-            print("Error: nota invalida (1-10 y numerico entero)")
-            nota_pp = input("Primer parcial: ")
+    nota_pp = int(nota_pp)
 
-        nota_pp = int(nota_pp)
+    nota_sp = input("Segundo parcial: ")
 
+    while not nota_sp.isdigit() or not validar_nota(int(nota_sp)):
+        print("Error: nota invalida (1-10 y numerica)")
         nota_sp = input("Segundo parcial: ")
-
-        while not nota_sp.isdigit() or not validar_nota(int(nota_sp)):
-            print("Error: nota invalida (1-10 y numerica)")
-            nota_sp = input("Segundo parcial: ")
         
-        nota_sp = int(nota_sp)
+    nota_sp = int(nota_sp)
 
         
-        alumno = {
-            "legajo": int(legajo),
-            "ape_nom": nombre,
-            "genero": genero,
-            "pp": nota_pp,
-            "sp": nota_sp
-        }
+    nuevo_alumno = {
+        "legajo": int(legajo),
+        "ape_nom": nombre,
+        "genero": genero,
+        "pp": nota_pp,
+        "sp": nota_sp,
+        "prom" : 0
+    }
 
-        alumnos.append(alumno)
+    lista_actual.append(nuevo_alumno)
+    print(f"Alumno con legajo {legajo} agregado con éxito a la lista.")
 
-    return alumnos
+
+def verificar_datos_cargados(lista_alumnos: list) -> bool:
+    """
+    Devuelve True si la lista tiene alumnos, de lo contrario
+    muestra False
+    """
+    if len(lista_alumnos) > 0:
+        retorno = True
+    else:
+        print("Primero debe cargar los datos (Opción 1 o 2)")
+        retorno = False
+    
+    return retorno
+
+
+def verificar_promedios_calculados(bandera_promedios: bool) -> bool:
+    """
+    Devuelve True si los promedios ya fueron procesados, de lo contrario
+    muestra False.
+    """
+    if bandera_promedios == True:
+        retorno = True
+    else:
+        print("Primero debe calcular los promedios (Opción 4).")
+        retorno = False
+    
+    return retorno
 
 
 def imprimir_titulos(titulos:str ) -> None :
@@ -184,7 +213,36 @@ def buscar_estudiante(lista_alumnos: list, legajo_buscado: int) -> int:
             break
 
     return retorno     
-   
+
+
+def gestionar_busqueda_alumno(lista_alumnos: list) -> None:
+    """
+    Maneja de forma interna los reintentos de búsqueda por legajo
+    sin sobrecargar el main.
+    """
+    while True:
+        print("\n ---- BUSCAR ALUMNO ----")
+        legajo_input = input("Ingrese el legajo a buscar (o 'S' para salir al menú): ").strip()
+
+        if legajo_input.upper() == "S":
+            print("Búsqueda cancelada.")
+            break
+
+        if legajo_input.isdigit():
+            legajo_num = int(legajo_input)
+
+            indice_encontrado = buscar_estudiante(lista_alumnos, legajo_num)
+
+            if indice_encontrado != -1:
+                mostrar_estudiante_buscado(lista_alumnos, indice_encontrado)
+                break
+            else:
+                print(f"No se encontró ningún alumno con el legajo {legajo_num}.")
+                legajo_input = input("Ingrese el legajo a buscar: ")
+        else:
+            print("Error: El legajo debe ser un número entero.")
+
+
 def mostrar_estudiante_buscado(lista_alumnos: list, indice: int) -> None:
     """
     Imprime en pantalla la ficha de un estudiante localizado mediante un índice de éxito.
@@ -212,25 +270,21 @@ def calcular_promedio(lista_alumnos):
     for alumno in lista_alumnos:
         alumno['prom'] = (alumno['pp'] + alumno['sp']) / 2
 
-def mostrar_mayor_promedio(lista_alumnos):
+def mostrar_mayor_promedio(lista_alumnos: list) -> None:
     """
-    Encuentra el índice del promedio más alto mediante un recorrido posicional.
-    Luego, filtra y muestra a todos los alumnos que igualen dicho puntaje máximo.
-    
-    Args:
-        lista_alumnos (list): Lista de diccionarios sobre la cual buscar los extremos.
+    Busca el promedio máximo guardando el valor directamente. 
     """ 
-    indice_maximo = 0
-    for i in range(len(lista_alumnos)):
-        if lista_alumnos[i]["prom"] > lista_alumnos[indice_maximo]["prom"]:
-            indice_maximo = i
+    max_promedio = lista_alumnos[0]["prom"]
+    for alumno in lista_alumnos:
+        if alumno["prom"] > max_promedio:
+            max_promedio = alumno["prom"]
 
-    valor_maximo = lista_alumnos[indice_maximo]["prom"]    
-    print(f"\n Mayor promedio encontrado: {valor_maximo}")
+       
+    print(f"\n Mayor promedio encontrado: {max_promedio: 2.f}")
     imprimir_titulos("ESTUDIANTE/S CON MAYOR PROMEDIO")
 
     for alumno in lista_alumnos:
-        if alumno["prom"] == valor_maximo:
+        if alumno["prom"] == max_promedio:
             mostar_alumno(alumno)
 
 def exportar_json(lista_alumnos, ruta_archivo):
