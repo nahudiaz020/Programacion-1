@@ -19,9 +19,7 @@ while opcion != "10":
             limpiar_pantalla()
         
         case "2":
-            if len(alumnos) == 0:
-                print("Cargando datos inicial del JSON..")
-                alumnos = leer_json("PROG1_SP/data_sp.json")
+            asegurar_precarga_json(alumnos, "PROG1_SP/data_sp.json")
             cargar_un_alumno(alumnos)
             promedios_calculados = False
             limpiar_pantalla()

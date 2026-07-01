@@ -27,6 +27,20 @@ def leer_json(data_sp):
     lista_alumnos = diccionario_raiz["estudiantes"]
     return lista_alumnos
 
+
+def asegurar_precarga_json(lista_alumnos: list, ruta_archivo: str) -> list:
+    """ 
+    Verifica si la lista está vacía. Si es así, lee el JSON en segundo plano 
+    para asegurar la persistencia y la retorna. Si ya tenía datos, no hace nada. 
+    """
+    if len(lista_alumnos) == 0:
+        print("Cargando base de datos inicial desde el JSON...")
+        # Llamamos a tu función nativa de lectura
+        lista_alumnos = leer_json(ruta_archivo)
+        
+    return lista_alumnos
+
+
 def validar_genero(genero: str) -> bool:
     """
     Valida si el género ingresado es correcto según las opciones permitidas.
@@ -257,9 +271,6 @@ def gestionar_busqueda_alumno(lista_alumnos: list) -> None:
                 legajo_input = input("Ingrese el legajo a buscar: ")
         else:
             print("Error: El legajo debe ser un número entero.")
-
-
-   
 
 
 def calcular_promedio(lista_alumnos):
