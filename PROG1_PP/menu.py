@@ -6,15 +6,15 @@ generos = []
 notas_pp = []
 notas_sp = []
 '''
-legajos = [1001, 1002, 1003, 1004, 1005]
-nombres = ["Juan Perez", "Ana Gomez", "Luis Martinez", "Sofia Lopez", "Carlos Diaz"]
-generos = ["M", "F", "M", "F", "M"]
-notas_pp = [7, 9, 6, 10, 8]
-notas_sp = [8, 10, 7, 9, 6]
-promedios = [7.5, 9.5, 6.5, 9.5, 7.0]
+legajos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+nombres = ["Ana", "Juan", "Luz", "Luis", "Mia", "Ian", "Eva", "Leo", "Paz", "Roy", "Amy", "Ben", "Zoe", "Tom", "Ada", "Max", "Eli", "Sam", "Teo", "Jon", "Dan", "Rey", "Noa", "Sol", "Feo", "Gus"]
+generos = ["F", "M", "X", "M", "F", "M", "F", "M", "X", "M", "F", "M", "F", "M", "F", "M", "X", "M", "M", "M", "M", "M", "X", "F", "M", "M"]
+notas_pp = [8, 4, 7, 2, 9, 6, 5, 8, 10, 3, 7, 6, 8, 5, 9, 4, 7, 6, 5, 8, 9, 3, 7, 6, 4, 10]
+notas_sp = [7, 5, 8, 4, 10, 5, 6, 9, 9, 4, 8, 7, 9, 6, 8, 5, 8, 7, 6, 7, 10, 4, 8, 7, 5, 9]
 promedios = []
 
 opcion = 0
+promedios_calculados = False
 
 while opcion != "7":
 
@@ -25,43 +25,31 @@ while opcion != "7":
     match opcion:
         case "1":
             ingresar_datos(legajos, nombres, generos, notas_pp, notas_sp)
-        
+            promedios_calculados = False
+
         case "2":
-            mostrar_todos(legajos, nombres, generos, notas_pp, notas_sp)
-            mostrar_estudiante(legajos, nombres, generos, notas_pp, notas_sp, 4)
+            if verificar_carga_completa(legajos):
+                mostrar_todos(legajos, nombres, generos, notas_pp, notas_sp)
 
         case "3":
-            promedio = calcular_promedio(notas_pp, notas_sp, promedios)
+            if verificar_carga_completa(legajos):
+                calcular_promedio(notas_pp, notas_sp, promedios)
+                promedios_calculados = True
+                print("Promedios calculados correctamente.")
 
         case "4":
-            criterio = input("Ingrese ASC o DESC: ")
-            ordenar_estudiantes(legajos, nombres, generos, notas_pp, notas_sp, promedios, criterio)
-            mostrar_todos(legajos, nombres, generos, notas_pp, notas_sp)
+            if verificar_carga_completa(legajos):
+                if verificar_promedios_calculados(promedios_calculados):
+                    ejecutar_ordenamiento(legajos, nombres, generos, notas_pp, notas_sp, promedios)
 
         case "5":
-            if len(promedios) > 0:
-                resultado = encontrar_extremos(promedios)
-                indice_maximo = resultado[0] 
-                indice_minimo = resultado[1]
-                print("\n--- MAYOR PROMEDIO ----")
-                mostrar_estudiante(legajos, nombres, generos, notas_pp, notas_sp, indice_maximo)
-                print(f"Promedio: {promedios[indice_maximo]:.2f}")
-
-                print("\n--- MENOR PROMEDIO ----")
-                mostrar_estudiante(legajos, nombres, generos, notas_pp, notas_sp, indice_minimo)
-                print(f"Promedio: {promedios[indice_minimo]:.2f}")
-
-            else:
-                print("Primero debe calcular los promedios.")
+            if verificar_carga_completa(legajos):
+                if verificar_promedios_calculados(promedios_calculados):
+                    mostrar_mayores_promedios(legajos, nombres, generos, notas_pp, notas_sp, promedios)
 
         case "6":
-            legajo_buscado = int(input("Ingrese legajo a buscar: "))
-            indice = buscar_estudiante(legajos, legajo_buscado)  
-            if indice != -1:  
-                mostrar_estudiante(legajos, nombres, generos, notas_pp, notas_sp, indice)  
-            
-            else:
-                print("No se encontro el estudiante.")   
+            if verificar_carga_completa(legajos):
+                gestionar_busqueda_alumno(legajos, nombres, generos, notas_pp, notas_sp, promedios, promedios_calculados)   
 
         case "7":
             print("Saliendo del menu...")

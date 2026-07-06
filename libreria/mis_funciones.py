@@ -57,26 +57,20 @@ def validar_nombre(nombre: str) -> bool:
         bool: True si el nombre es válido.
               False en caso contrario.
     """
-
     retorno = True
-
     for caracter in nombre:
-
         # VALIDAR LETRAS
         if get_Char(caracter):
 
             retorno = True
-
         # VALIDAR ESPACIOS
         elif caracter == " ":
 
             retorno = True
-
         else:
 
             retorno = False
             break
-
     return retorno
 
 '''
