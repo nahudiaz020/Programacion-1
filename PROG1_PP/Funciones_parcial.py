@@ -16,7 +16,6 @@ def verificar_carga_completa(lista_legajos: list) -> bool:
     """
     LIMITE = 30
     if len(lista_legajos) < LIMITE:
-        print(f"\nERROR: Carga incompleta. Hay {len(lista_legajos)} de {LIMITE} estudiantes.")
         print("Debe ingresar a la opcion 1 y completar los datos restantes.")
         return False
     return True
@@ -41,11 +40,12 @@ def validar_numeros(dato: str) -> bool:
     
     retorno = True
     for caracter in dato:
-        if ord(caracter) >= 48 and ord(caracter) <= 57:
-            retorno = True
-        else:
+        if ord(caracter) < 48 or ord(caracter) > 57:
             retorno = False
             break
+        else:
+            retorno = True
+            
         
     return retorno
 
@@ -172,10 +172,9 @@ def ingresar_datos(legajos: list, nombres: list, generos: list, notas_pp: list, 
                 legajo_entero = int(legajo_in)
                 if buscar_estudiante(legajos, legajo_entero) != -1:
                     print("Error. Ese legajo ya pertenece a otro estudiante.")
-                    legajo_in = input("Ingrese el legajo del estudiante: ")
                 else:
                     legajo_final = legajo_entero
-                break
+                    break
             
             else:
                 print("Error. Ingrese solo numeros.")
