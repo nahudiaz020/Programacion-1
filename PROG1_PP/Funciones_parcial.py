@@ -14,7 +14,7 @@ def verificar_carga_completa(lista_legajos: list) -> bool:
     """
     Verifica si la cantidad de estudiantes cargados cumple con el límite estricto de 30.
     """
-    LIMITE = 30
+    LIMITE = 26
     if len(lista_legajos) < LIMITE:
         print("Debe ingresar a la opcion 1 y completar los datos restantes.")
         return False
@@ -242,7 +242,7 @@ def buscar_estudiante(legajos: list, legajo_buscado: int) -> int:
     return retorno     
    
 
-def mostrar_estudiante(legajos: list, nombres: list, generos: list, notas_pp: list, notas_sp: list, indice: int) -> None:
+def mostrar_estudiante(legajos: list, nombres: list, generos: list, notas_pp: list, notas_sp: list, promedios: list, promedios_calculados: bool, indice: int) -> None:
     """
     Muestra de forma formateada por consola los datos de un único estudiante basado en su índice.
 
@@ -260,7 +260,12 @@ def mostrar_estudiante(legajos: list, nombres: list, generos: list, notas_pp: li
     print(f"Nombre: {nombres[indice]}")
     print(f"Genero: {generos[indice]}")
     print(f"Notas primer parcial: {notas_pp[indice]}")
-    print(f"Notas segundo parcial: {notas_sp[indice]}")    
+    print(f"Notas segundo parcial: {notas_sp[indice]}") 
+    
+    if promedios_calculados == True:
+        print(f"Promedio: {promedios[indice]}")
+    else:
+        print("Promedio: 0.0")   
 
 
 def gestionar_busqueda_alumno(legajos: list, nombres: list, generos: list, notas_pp: list, notas_sp: list, promedios: list, promedios_calculados: bool) -> None:
@@ -272,16 +277,15 @@ def gestionar_busqueda_alumno(legajos: list, nombres: list, generos: list, notas
         legajo_buscado = int(legajo_ingresado)
         indice = buscar_estudiante(legajos, legajo_buscado)  
         if indice != -1:  
-            mostrar_estudiante(legajos, nombres, generos, notas_pp, notas_sp, indice)  
-            if promedios_calculados == True:
-                print(f"Promedio actual: {promedios[indice]:.2f}")
+            mostrar_estudiante(legajos, nombres, generos, notas_pp, notas_sp, promedios, promedios_calculados, indice)  
+
         else:
             print("No se encontro ningun estudiante con ese legajo.")   
     else:
         print("Error. El legajo debe contener exclusivamente digitos numericos.")
 
 
-def mostrar_todos(legajos: list, nombres: list, generos: list, notas_pp: list, notas_sp: list) -> None:
+def mostrar_todos(legajos: list, nombres: list, generos: list, notas_pp: list, notas_sp: list, promedios: list, promedios_calculados: bool) -> None:
     """
     Recorre e imprime el listado completo de los estudiantes cargados en el sistema.
 
@@ -294,7 +298,7 @@ def mostrar_todos(legajos: list, nombres: list, generos: list, notas_pp: list, n
     """
     print("\nResumen de Estudiantes:")
     for i in range(len(legajos)):  
-        mostrar_estudiante(legajos, nombres, generos, notas_pp, notas_sp, i)
+        mostrar_estudiante(legajos, nombres, generos, notas_pp, notas_sp, promedios, promedios_calculados, i)
     
 
 def calcular_promedio(notas_pp: list, notas_sp: list, promedios: list) -> None:
@@ -402,7 +406,7 @@ def ordenar_estudiantes(legajos:list, nombres: list, generos:list, notas_pp: lis
                     notas_sp[j] = aux
 
 
-def mostrar_mayores_promedios(legajos: list, nombres: list, generos: list, notas_pp: list, notas_sp: list, promedios: list) -> None: 
+def mostrar_mayores_promedios(legajos: list, nombres: list, generos: list, notas_pp: list, notas_sp: list, promedios: list, promedios_calculados: bool) -> None: 
     """
     Busca el valor máximo dentro de los promedios y muestra a él o los estudiantes asociados.
     Realiza una búsqueda lineal manual para identificar el mayor promedio absolutoy contempla casos de empate imprimiendo todos los registros coincidentes.
@@ -421,4 +425,4 @@ def mostrar_mayores_promedios(legajos: list, nombres: list, generos: list, notas
     print(f"\n--- Estudiantes con el mayor promedio ({mayor_promedio:.2f}) ---")
     for i in range(len(promedios)):
         if promedios[i] == mayor_promedio:
-            mostrar_estudiante(legajos, nombres, generos, notas_pp, notas_sp, i)
+            mostrar_estudiante(legajos, nombres, generos, notas_pp, notas_sp, promedios, promedios_calculados, i)

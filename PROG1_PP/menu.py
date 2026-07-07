@@ -29,7 +29,7 @@ while opcion != "7":
 
         case "2":
             if verificar_carga_completa(legajos):
-                mostrar_todos(legajos, nombres, generos, notas_pp, notas_sp)
+                mostrar_todos(legajos, nombres, generos, notas_pp, notas_sp, promedios, promedios_calculados)
 
         case "3":
             if verificar_carga_completa(legajos):
@@ -40,12 +40,12 @@ while opcion != "7":
         case "4":
             if verificar_carga_completa(legajos):
                 if verificar_promedios_calculados(promedios_calculados):
-                    ejecutar_ordenamiento(legajos, nombres, generos, notas_pp, notas_sp, promedios)
+                    ejecutar_ordenamiento(legajos, nombres, generos, notas_pp, notas_sp, promedios, True)
 
         case "5":
             if verificar_carga_completa(legajos):
                 if verificar_promedios_calculados(promedios_calculados):
-                    mostrar_mayores_promedios(legajos, nombres, generos, notas_pp, notas_sp, promedios)
+                    mostrar_mayores_promedios(legajos, nombres, generos, notas_pp, notas_sp, promedios, True)
 
         case "6":
             if verificar_carga_completa(legajos):
