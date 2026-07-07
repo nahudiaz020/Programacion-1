@@ -1,13 +1,7 @@
 from Funciones_parcial import *
-'''
-legajos = []
-nombres = []
-generos = []
-notas_pp = []
-notas_sp = []
-'''
+
 legajos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
-nombres = ["Ana", "Juan", "Luz", "Luis", "Mia", "Ian", "Eva", "Leo", "Paz", "Roy", "Amy", "Ben", "Zoe", "Tom", "Ada", "Max", "Eli", "Sam", "Teo", "Jon", "Dan", "Rey", "Noa", "Sol", "Feo", "Gus"]
+nombres = ["Ana", "Juan", "Luz", "Luis", "Mia", "Ian", "Eva", "Leo", "Paz", "Pedro", "Juana", "Ben", "Zoe", "Tom", "Ada", "Max", "Eli", "Sam", "Teo", "Pepe", "Daniel", "Rodri", "Noa", "Sol", "Fede", "Gustavo"]
 generos = ["F", "M", "X", "M", "F", "M", "F", "M", "X", "M", "F", "M", "F", "M", "F", "M", "X", "M", "M", "M", "M", "M", "X", "F", "M", "M"]
 notas_pp = [8, 4, 7, 2, 9, 6, 5, 8, 10, 3, 7, 6, 8, 5, 9, 4, 7, 6, 5, 8, 9, 3, 7, 6, 4, 10]
 notas_sp = [7, 5, 8, 4, 10, 5, 6, 9, 9, 4, 8, 7, 9, 6, 8, 5, 8, 7, 6, 7, 10, 4, 8, 7, 5, 9]
