@@ -1,4 +1,7 @@
 def mostrar_menu():
+    """
+    Muestra la interfaz del menú de opciones del sistema de gestión escolar.
+    """
 
     print("\n----- MENU -----")
     print("1. Cargar datos")
