@@ -10,28 +10,6 @@ def mostrar_menu():
     print("7. Salir del menu")
 
 
-def verificar_carga_completa(lista_legajos: list) -> bool:
-    """
-    Verifica si la cantidad de estudiantes cargados cumple con el límite estricto de 30.
-
-    Args:
-        lista_legajos (list): Lista de legajos cargados en el sistema.
-
-    Returns:
-        bool: True si la densidad de datos es igual a 30, False en caso contrario
-    """
-    contador_reales = 0
-    retorno = True
-    for i in range(len(lista_legajos)):
-        if lista_legajos[i] != 0:
-            contador_reales = contador_reales + 1
-        
-    if contador_reales < 30:
-        print("Debe ingresar a la opcion 1 y completar los datos restantes.")
-        retorno = False
-    return retorno
-
-
 def validar_numeros(dato: str) -> bool: 
     """
     Determina si una cadena de caracteres contiene únicamente números.
@@ -275,33 +253,6 @@ def mostrar_estudiante(legajos: list, nombres: list, generos: list, notas_pp: li
         promedio = 0.0 
        
     print(f"{legajos[indice]}\t| {nombres[indice]}\t| {generos[indice]}\t| {notas_pp[indice]}\t| {notas_sp[indice]}\t| {promedio}")
-      
-
-
-def gestionar_busqueda_alumno(legajos: list, nombres: list, generos: list, notas_pp: list, notas_sp: list, promedios: list, promedios_calculados: bool) -> None:
-    """
-    Se encarga de la interfaz de entrada, validación y respuesta de búsqueda por legajo de forma segura.
-    
-    Args:
-        legajos (list): Lista estática de legajos.
-        nombres (list): Lista estática de nombres.
-        generos (list): Lista estática de géneros.
-        notas_pp (list): Lista estática de notas del primer parcial.
-        notas_sp (list): Lista estática de notas del segundo parcial.
-        promedios (list): Lista estática de promedios calculados.
-        promedios_calculados (bool): Bandera que indica el estado del cálculo de promedios.
-    """
-    legajo_ingresado = input("Ingrese el legajo a buscar: ")
-    if validar_numeros(legajo_ingresado):
-        legajo_buscado = int(legajo_ingresado)
-        indice = buscar_estudiante(legajos, legajo_buscado)  
-        if indice != -1:  
-            mostrar_estudiante(legajos, nombres, generos, notas_pp, notas_sp, promedios, promedios_calculados, indice)  
-
-        else:
-            print("No se encontro ningun estudiante con ese legajo.")   
-    else:
-        print("Error. El legajo debe contener exclusivamente digitos numericos.")
 
 
 def mostrar_todos(legajos: list, nombres: list, generos: list, notas_pp: list, notas_sp: list, promedios: list, promedios_calculados: bool) -> None:
@@ -338,48 +289,6 @@ def calcular_promedio(notas_pp: list, notas_sp: list, promedios: list) -> None:
         promedios[i] = promedio
         print(f"Estudiante {i+1} -> Promedio: {promedio:.2f}")
 
-
-def verificar_promedios_calculados(bandera_promedios: bool) -> bool:
-    """
-    Verifica si se ejecutó previamente el cálculo de promedios en el sistema.
-    Args:
-        bandera_promedios (bool): Indicador que representa si la opción 3 fue ejecutada.
-
-    Returns:
-        bool: True si los datos de promedios están inicializados, False en caso de infracción.
-    """
-    retorno = True
-    if not bandera_promedios:
-        print("\nERROR: Primero debe calcular los promedios en la opcion 3.")
-        retorno = False
-    return retorno
-
-
-def ejecutar_ordenamiento(legajos: list, nombres: list, generos: list, notas_pp: list, notas_sp: list, promedios: list) -> None:
-    """
-    Pide el criterio al usuario y ordena los datos si la entrada es correcta.
-
-    Args:
-        legajos (list): Lista de legajos.
-        nombres (list): Lista de nombres.
-        generos (list): Lista de géneros.
-        notas_pp (list): Lista de notas primer parcial.
-        notas_sp (list): Lista de notas segundo parcial.
-        promedios (list): Lista de promedios calculados.
-    """
-    criterio_ingresado = input("Ingrese criterio de ordenamiento (ASC o DESC): ")
-    criterio = ""
-    for i in range(len(criterio_ingresado)):
-        letra_mayuscula = convertir_a_mayuscula(criterio_ingresado[i])
-        criterio = criterio + letra_mayuscula
-
-    if criterio == "ASC" or criterio == "DESC":
-        ordenar_estudiantes(legajos, nombres, generos, notas_pp, notas_sp, promedios, criterio)
-        print(f"\nAlumnos ordenados por promedio {criterio}:")
-        mostrar_todos(legajos, nombres, generos, notas_pp, notas_sp, promedios, True)
-    else:
-        print("Criterio invalido. Ingrese estrictamente 'ASC' o 'DESC'.")
-        
 
 def ordenar_estudiantes(legajos:list, nombres: list, generos:list, notas_pp: list, notas_sp: list, promedios: list, criterio:str = "DESC") -> None:
     """
@@ -449,3 +358,93 @@ def mostrar_mayores_promedios(legajos: list, nombres: list, generos: list, notas
     for i in range(len(promedios)):
         if promedios[i] == mayor_promedio:
             mostrar_estudiante(legajos, nombres, generos, notas_pp, notas_sp, promedios, promedios_calculados, i)
+            
+
+def verificar_carga_completa(lista_legajos: list) -> bool:
+    """
+    Verifica si la cantidad de estudiantes cargados cumple con el límite estricto de 30.
+
+    Args:
+        lista_legajos (list): Lista de legajos cargados en el sistema.
+
+    Returns:
+        bool: True si la densidad de datos es igual a 30, False en caso contrario
+    """
+    contador_reales = 0
+    retorno = True
+    for i in range(len(lista_legajos)):
+        if lista_legajos[i] != 0:
+            contador_reales = contador_reales + 1
+        
+    if contador_reales < 30:
+        print("Debe ingresar a la opcion 1 y completar los datos restantes.")
+        retorno = False
+    return retorno
+
+
+def verificar_promedios_calculados(bandera_promedios: bool) -> bool:
+    """
+    Verifica si se ejecutó previamente el cálculo de promedios en el sistema.
+    Args:
+        bandera_promedios (bool): Indicador que representa si la opción 3 fue ejecutada.
+
+    Returns:
+        bool: True si los datos de promedios están inicializados, False en caso de infracción.
+    """
+    retorno = True
+    if not bandera_promedios:
+        print("\nERROR: Primero debe calcular los promedios en la opcion 3.")
+        retorno = False
+    return retorno
+
+
+def ejecutar_ordenamiento(legajos: list, nombres: list, generos: list, notas_pp: list, notas_sp: list, promedios: list) -> None:
+    """
+    Pide el criterio al usuario y ordena los datos si la entrada es correcta.
+
+    Args:
+        legajos (list): Lista de legajos.
+        nombres (list): Lista de nombres.
+        generos (list): Lista de géneros.
+        notas_pp (list): Lista de notas primer parcial.
+        notas_sp (list): Lista de notas segundo parcial.
+        promedios (list): Lista de promedios calculados.
+    """
+    criterio_ingresado = input("Ingrese criterio de ordenamiento (ASC o DESC): ")
+    criterio = ""
+    for i in range(len(criterio_ingresado)):
+        letra_mayuscula = convertir_a_mayuscula(criterio_ingresado[i])
+        criterio = criterio + letra_mayuscula
+
+    if criterio == "ASC" or criterio == "DESC":
+        ordenar_estudiantes(legajos, nombres, generos, notas_pp, notas_sp, promedios, criterio)
+        print(f"\nAlumnos ordenados por promedio {criterio}:")
+        mostrar_todos(legajos, nombres, generos, notas_pp, notas_sp, promedios, True)
+    else:
+        print("Criterio invalido. Ingrese estrictamente 'ASC' o 'DESC'.")
+
+
+def gestionar_busqueda_alumno(legajos: list, nombres: list, generos: list, notas_pp: list, notas_sp: list, promedios: list, promedios_calculados: bool) -> None:
+    """
+    Se encarga de la interfaz de entrada, validación y respuesta de búsqueda por legajo de forma segura.
+    
+    Args:
+        legajos (list): Lista estática de legajos.
+        nombres (list): Lista estática de nombres.
+        generos (list): Lista estática de géneros.
+        notas_pp (list): Lista estática de notas del primer parcial.
+        notas_sp (list): Lista estática de notas del segundo parcial.
+        promedios (list): Lista estática de promedios calculados.
+        promedios_calculados (bool): Bandera que indica el estado del cálculo de promedios.
+    """
+    legajo_ingresado = input("Ingrese el legajo a buscar: ")
+    if validar_numeros(legajo_ingresado):
+        legajo_buscado = int(legajo_ingresado)
+        indice = buscar_estudiante(legajos, legajo_buscado)  
+        if indice != -1:  
+            mostrar_estudiante(legajos, nombres, generos, notas_pp, notas_sp, promedios, promedios_calculados, indice)  
+
+        else:
+            print("No se encontro ningun estudiante con ese legajo.")   
+    else:
+        print("Error. El legajo debe contener exclusivamente digitos numericos.")
