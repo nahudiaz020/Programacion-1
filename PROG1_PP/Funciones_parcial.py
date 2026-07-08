@@ -448,7 +448,8 @@ def gestionar_busqueda_alumno(legajos: list, nombres: list, generos: list, notas
     if validar_numeros(legajo_ingresado):
         legajo_buscado = int(legajo_ingresado)
         indice = buscar_estudiante(legajos, legajo_buscado)  
-        if indice != -1:  
+        if indice != -1: 
+            print("LEGAJO\t| NOMBRE | GÉNERO | P1 | P2 | PROM") 
             mostrar_estudiante(legajos, nombres, generos, notas_pp, notas_sp, promedios, promedios_calculados, indice)  
 
         else:

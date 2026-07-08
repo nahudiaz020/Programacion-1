@@ -43,7 +43,8 @@ while opcion != "7":
 
         case "6":
             if verificar_carga_completa(legajos):
-                gestionar_busqueda_alumno(legajos, nombres, generos, notas_pp, notas_sp, promedios, promedios_calculados)   
+                if verificar_promedios_calculados(promedios_calculados):
+                    gestionar_busqueda_alumno(legajos, nombres, generos, notas_pp, notas_sp, promedios, promedios_calculados)   
 
         case "7":
             print("Saliendo del menu...")
