@@ -27,7 +27,6 @@ def validar_numeros(dato: str) -> bool:
     if len(dato) == 0:
         retorno = False
     
-    retorno = True
     for caracter in dato:
         if ord(caracter) < 48 or ord(caracter) > 57:
             retorno = False
@@ -76,16 +75,20 @@ def validar_nombre(nombre: str) -> bool:
               False en caso contrario.
     """
     retorno = True
-    for caracter in nombre:
-        # VALIDAR LETRAS
-        if get_Char(caracter):
-            retorno = True
-        # VALIDAR ESPACIOS
-        elif caracter == " ":
-            retorno = True
-        else:
-            retorno = False
-            break
+    if len(nombre) == 0:
+        retorno = False
+    
+    else:
+        for caracter in nombre:
+            # VALIDAR LETRAS
+            if get_Char(caracter):
+                retorno = True
+            # VALIDAR ESPACIOS
+            elif caracter == " ":
+                retorno = True
+            else:
+                retorno = False
+                break
     return retorno
 
 
