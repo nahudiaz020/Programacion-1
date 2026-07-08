@@ -108,7 +108,7 @@ def convertir_a_mayuscula(caracter):
         str: El carácter convertido a mayúscula, o el mismo carácter 
              si no era una letra minúscula.
     """
-    retorno = True
+    retorno = caracter
     if ord(caracter) >= 97 and ord(caracter) <= 122:
         valor = ord(caracter) - 32
         retorno = chr(valor)
@@ -354,7 +354,8 @@ def mostrar_mayores_promedios(legajos: list, nombres: list, generos: list, notas
         generos (list): Lista de géneros.
         notas_pp (list): Lista de notas primer parcial.
         notas_sp (list): Lista de notas segundo parcial.
-        promedios (list): Lista de promedios calculados."""
+        promedios (list): Lista de promedios calculados.
+    """
     mayor_promedio = promedios[0]
     for i in range(len(promedios)):
         if promedios[i] > mayor_promedio:
