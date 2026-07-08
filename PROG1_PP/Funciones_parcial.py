@@ -1,4 +1,4 @@
-def mostrar_menu():
+def mostrar_menu() -> None:
     """
     Muestra la interfaz del menú de opciones del sistema de gestión escolar.
     """
@@ -78,20 +78,20 @@ def validar_nombre(nombre: str) -> bool:
               False en caso contrario.
     """
     retorno = True
+    tiene_letras = False
     if len(nombre) == 0:
         retorno = False
     
     else:
         for caracter in nombre:
-            # VALIDAR LETRAS
             if get_Char(caracter):
-                retorno = True
-            # VALIDAR ESPACIOS
-            elif caracter == " ":
-                retorno = True
-            else:
+                tiene_letras = True
+            if not (get_Char(caracter) or caracter == " "):
                 retorno = False
                 break
+        if not tiene_letras:
+            retorno = False
+    
     return retorno
 
 
